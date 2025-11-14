@@ -126,7 +126,7 @@ Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes
 ---
 
 <div align="center">
-  <p>Desenvolvido com ❤️</p>
+  
 </div
 import reactDom from 'eslint-plugin-react-dom'
 

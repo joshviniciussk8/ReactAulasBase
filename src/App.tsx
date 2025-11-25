@@ -1,45 +1,46 @@
-interface ICardProps {
-  title: string;
-  // React.ReactNode é um tipo especial do React que representa qualquer coisa que pode ser renderizada pelo React
-  children: React.ReactNode;
-  
+import { use, useState } from 'react';
+
+export function App() {
+  const [hide, setHide] = useState(false);  
+  return (
+  <>
+    {hide && <p>teste 1</p>}
+    {!hide && <p>teste 2</p>}
+    <button onClick={() => setHide(!hide)}>{hide ? 'Mostrar teste 2' : 'Mostrar teste 1'}</button>
+  </>
+    
+  )
 }
 
-const Card = (props: ICardProps) => {
-  return (
-    <div style={{ border: '1px solid black', padding: '10px', width: '200px' }}>
-        <br/>
-        <span>{props.title} </span>
-        <br/>
-        <div>{props.children}</div>       
-        <br/>
-        <div>Footer</div>
+
+export function Listas(){
+  const [value, setValue] = useState('');
+  const [list, setList] = useState([
+    {id: 1, label: 'Item 1'},
+    {id: 2, label: 'Item 2'},
+    {id: 3, label: 'Item 2'},
+    {id: 4, label: 'Item 3'}
+    ]);
+  return(
+    <div>
+      <br />
+      <input value={value} onChange={e => setValue(e.target.value)} />
+      <button onClick={() => 
+          {
+            setList([
+            ...list,
+            {id: list.length + 1, label: value}
+          ])
+          setValue('');
+        } 
+      }>Adicionar</button>
+      <br />
+      <ol>
+        {list.map((item) => (
+          <li key={item.id}>{item.label}</li>
+        ))}
+      </ol>
     </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-export function App() {
-  
-  return (
-    <>
-      olá
-      <p>Card:</p>
-      <Card title="Card 1" >Conteúdo do Card 1</Card>
-      <Card title="Card 2" >Conteúdo do Card 2</Card>
-      <Card title="Card 3" >Conteúdo do Card 3</Card>
-      <Card title="Card 4" >Conteúdo do Card 4</Card>
-    </>
-  )
-}
-
 
